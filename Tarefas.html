@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Tarefas</title>
+    <style>
+    </style>
+</head>
+<body>
+    <input type="text" id="tarefa" placeholder="Digite sua Tarefa...">
+    <button id="send" onclick="setTarefa()">Enviar</button>
+
+    <ul id="listaTarefas">
+
+    </ul>
+    <script>
+        function setTarefa() {
+            var novaTarefa = document.getElementById("tarefa").value;
+            var lista = document.getElementById("listaTarefas");
+
+            var itemLista = document.createElement("li");
+            itemLista.innerHTML= novaTarefa;
+
+            lista.appendChild(itemLista);
+
+            var checkBox = document.createElement("input");
+            checkBox.type = "checkbox"
+            itemLista.appendChild(checkBox);
+            if (checkBox.checked) {
+                lista.style.textDecoration = "line-through";
+            }
+
+            var botaoRemover = document.createElement("button");
+            itemLista.appendChild(botaoRemover);
+            botaoRemover.innerHTML = "Remover"
+            botaoRemover.onclick = function() {
+                lista.removeChild(itemLista);
+            }; 
+            }
+
+
+
+
+        
+        
+
+    </script>
+</body>
+</html>

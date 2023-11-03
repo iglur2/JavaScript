@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript DOM demo</title>
+    <style>
+        .interactive-element {
+            width: 200px;
+            height: 50px;
+            margin: 20px;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+            background-color: lightblue;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="output"></div>
+    <input type="text" id="inputText" placeholder="Digite algo...">
+    <div class="interactive-element" id="changeTextButton">Alterar Texto</div>
+    <div class="interactive-element" id="changeColorButton">Alterar Cor</div>
+
+    <script>
+        function getRandomColor(){
+            const letters = "0123456789ABCDEF";
+            let color = '#';
+            for (let i = 0; i < 6; i++){
+                color += letters[Math.floor(Math.random() * 16 )];
+            }
+            return color;
+        }
+        
+        const output = document.getElementById("output");
+        const inputText = document.getElementById("inputText");
+        const changeColorButton = document.getElementById("changeColorButton");
+        const changeTextButton = document.getElementById("changeTextButton");
+
+        changeTextButton.addEventListener("click", () => {
+            const inputValue = inputText.value;
+            output.textContent = `Texto alterado para: ${inputValue}`;
+        });
+
+        changeColorButton.addEventListener("mouseover", () => {
+            changeColorButton.style.backgroundColor = "lightgreen";
+        });
+
+        changeColorButton.addEventListener("mouseout", () => {
+            changeColorButton.style.backgroundColor = "lightblue";
+        });
+
+        changeColorButton.addEventListener("click", () => {
+            const randomColor = getRandomColor();
+            document.body.style.backgroundColor = randomColor;
+        });
+    </script>
+</body>
+
+</html>

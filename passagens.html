@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passagem</title>
+</head>
+
+<body>
+
+  <h1>Seletor de Passagnes</h1>
+
+  <select id="tickets">
+    <option value="" selected disabled hidden>Localização:</option>
+    <option value="RJ">Rio de Janeiro</option>
+    <option value="SP">São Paulo</option>
+    <option value="BH">Belo Horizonte</option>
+    <option value="Salvador">Salvador</option>
+    <option value="Taubate">Taubaté</option>
+  </select>
+  <button id="cost" onclick="getCost()">Ver</button>
+  <p id="showCost"></p>
+
+  <script>
+    function getCost() {
+      let select = document.getElementById("tickets");
+      let showCost = document.getElementById('showCost');
+      if (select.value == "RJ") {
+        showCost.innerHTML = "O valor da passagem é: R$400.00";
+      }
+      else if (select.value == "SP") {
+        showCost.innerHTML = "O valor da passagem é: R$450.00";
+      }
+      else if (select.value == "BH") {
+        showCost.innerHTML = "O valor da passagem é: R$500.00";
+      }
+      else if (select.value == "Salvador") {
+        showCost.innerHTML = "O valor da passagem é: R$1100.00";
+      }
+      else if (select.value == "Taubate") {
+        showCost.innerHTML = "O valor da passagem é: R$550.00";
+      }
+    }
+  </script>
+</body>
+
+</html>

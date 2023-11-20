@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #letter {
+            max-width: 10vw;
+        }
+        
+        button {
+            max-width: 10vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="forca.png" width="650" height="400" title="img" id="forca"></img>
+        <p id="display"></p>
+        <p id="displayWrong"></p>
+        <input type="text" name="letter" placeholder="Digite uma letra..." id="letter">
+        <button onclick="checkLetra()">Enviar</button>
+    </div>
+    <script>
+        var words = ['janela', 'macarrao', 'plateominto', 'toalha', 'vassoura'];
+        var selectedWord = words[Math.floor(Math.random() * words.length)];
+        var display = document.getElementById("display");
+        var displayWrong = document.getElementById("displayWrong");
+        var usedLetters = [];
+        var forcas = ['forca2.png', 'forca3.png', 'forca4.png', 'forca5.png', 'forca6.png'];
+        var lifes = 0;
+
+        for (let i = 0; i < selectedWord.length; i++) {
+            display.innerHTML += "_";
+        }
+
+        function checkLetra() {
+            let letra = document.getElementById("letter").value;
+            let displayContent = display.innerHTML;
+
+            for (let i = 0; i < usedLetters.length; i++) {
+                if (usedLetters[i] == letra) {
+                    alert("A letra já foi utilizada");
+                    return;
+                }
+            }
+
+            let letterFind = false;
+
+            for (let i = 0; i < selectedWord.length; i++) {
+                if (letra === selectedWord.charAt(i)) {
+                    displayContent = displayContent.substring(0, i) + letra + displayContent.substring(i + 1);
+                    letterFind = true;
+                }
+            }
+
+            display.innerHTML = displayContent;
+            usedLetters.push(letra);
+
+            if (!letterFind) {
+                lifes = lifes + 1;
+                displayWrong.innerHTML = lifes;
+                if (lifes == 4) {
+                    document.getElementById('forca').src = "forcaperdeu.png";
+                } else {
+                    document.getElementById('forca').src = forcas[lifes];
+                }
+            }
+            if (display.innerHTML === selectedWord) {
+                alert("Você Venceu!");
+            }
+        }
+    </script>
+</body>
+
+</html>
